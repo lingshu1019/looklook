@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<title>阿傑的自然觀察力大考驗</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Fredoka:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: a sticker-book explorer exam; chunky outlined cards with offset shadows, sky + sunshine palette, answers stamp in teal or coral */
+:root{
+  --bg:#E4F3FA;          /* clear sky */
+  --paper:#FFFFFF;
+  --ink:#24305E;         /* storybook navy, also the outline color */
+  --ink-soft:#56608A;
+  --sun:#FFC83D;
+  --sun-soft:#FFF1C7;
+  --coral:#FF7A5C;
+  --coral-soft:#FFE3DA;
+  --teal:#1FA597;
+  --teal-soft:#D3F2EC;
+  --line:#24305E;
+  --q-ink:#4A5585;      /* softer text for questions and choices */
+  --soft-line:#9AA3CC;
+  --pop:4px 4px 0 var(--ink);
+  --pop-sm:3px 3px 0 var(--ink);
+  --display:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --round:"Fredoka","Huninn",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141A33;--paper:#1E2647;--ink:#EEF1FF;--ink-soft:#B6BDE0;--sun:#FFCF57;--sun-soft:#3B3418;--coral:#FF8E73;--coral-soft:#43251F;--teal:#4CC9BA;--teal-soft:#183A39;--line:#0B1026;--q-ink:#D3D8F2;--soft-line:#5A6496;
+  --pop:4px 4px 0 #0B1026;--pop-sm:3px 3px 0 #0B1026;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141A33;--paper:#1E2647;--ink:#EEF1FF;--ink-soft:#B6BDE0;--sun:#FFCF57;--sun-soft:#3B3418;--coral:#FF8E73;--coral-soft:#43251F;--teal:#4CC9BA;--teal-soft:#183A39;--line:#0B1026;--q-ink:#D3D8F2;--soft-line:#5A6496;
+  --pop:4px 4px 0 #0B1026;--pop-sm:3px 3px 0 #0B1026;color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;
+  background-image:radial-gradient(circle at 1px 1px, rgba(36,48,94,.10) 1.2px, transparent 0);background-size:22px 22px}
+.wrap{max-width:560px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+.page{background:var(--paper);border:2.5px solid var(--line);border-radius:22px;box-shadow:var(--pop);padding:26px 22px;display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-family:var(--display);font-size:14px;color:var(--coral);letter-spacing:.04em}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.4}
+h2{font-size:clamp(19px,4.9vw,22px)}
+#qt{color:var(--q-ink)}
+p{margin:0}
+.lead{color:var(--ink-soft)}
+.meta{font-family:var(--round);font-weight:500;font-size:14px;color:var(--teal)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn{line-height:1.25;appearance:none;border:2.5px solid var(--line);border-radius:16px;font-family:var(--display);font-size:17px;cursor:pointer;padding:11px 22px;min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-shadow:var(--pop-sm);transition:transform .08s ease, box-shadow .08s ease}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn-primary{background:var(--sun);color:#24305E}
+.btn-ghost{background:var(--paper);color:var(--ink)}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-wrap{margin:-26px -22px 0;border-radius:20px 20px 0 0;overflow:hidden;line-height:0;border-bottom:2.5px solid var(--line)}
+.hero{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.4}
+.levels span{display:flex;flex-direction:column;align-items:center;gap:6px}
+.levels i{font-style:normal;width:40px;height:40px;border-radius:50%;border:2.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--round);font-weight:700;font-size:16px;color:#24305E}
+
+.progress{display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:14px;background:var(--sun-soft);border:2px solid var(--line);border-radius:99px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--sun);border-right:2px solid var(--line);transition:width .25s ease}
+.qnum{font-family:var(--round);font-weight:700;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.score{font-family:var(--round);font-weight:700;font-size:13px;color:#24305E;background:var(--teal-soft);border:2px solid var(--line);border-radius:99px;padding:2px 10px}
+.qimg{margin:0;border-radius:16px;overflow:hidden;line-height:0;border:2.5px solid var(--line)}
+.qimg img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{appearance:none;text-align:left;font:inherit;color:var(--q-ink);background:var(--paper);border:2px solid var(--soft-line);border-radius:16px;padding:12px 14px;min-height:52px;cursor:pointer;display:flex;gap:12px;align-items:center;line-height:1.5;box-shadow:3px 3px 0 var(--soft-line);transition:transform .08s ease, box-shadow .08s ease}
+.opt:hover:not(:disabled){background:var(--sun-soft)}
+.opt:disabled{cursor:default;box-shadow:none;transform:translate(3px,3px)}
+.opt .k{font-family:var(--round);font-weight:700;font-size:14px;flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--soft-line);display:flex;align-items:center;justify-content:center;background:var(--sun);color:#24305E}
+.opt.right{background:var(--teal-soft)}
+.opt.right .k{background:var(--teal);color:#fff}
+.opt.wrong{background:var(--coral-soft)}
+.opt.wrong .k{background:var(--coral);color:#fff}
+.note{border:2.5px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.note.good{background:var(--teal-soft)}
+.note.bad{background:var(--coral-soft)}
+.note .verdict{font-family:var(--display);font-size:20px}
+.note.good .verdict{color:var(--teal)}
+.note.bad .verdict{color:var(--coral)}
+.note .page-ref{align-self:flex-start;font-family:var(--round);font-weight:700;font-size:12px;background:var(--paper);border:2px solid var(--line);border-radius:99px;padding:1px 10px}
+.teaser{font-size:14px;color:var(--ink-soft);border-top:2px dotted var(--line);padding-top:8px}
+
+.badge{display:flex;align-items:center;gap:16px}
+.avatar{flex:none;margin:0;width:104px;height:104px;border-radius:50%;overflow:hidden;border:3px solid var(--line);box-shadow:var(--pop-sm);background:var(--sun-soft)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.lvrow{display:flex;align-items:center;gap:4px;margin:4px 0 2px}
+.lvtxt{font-family:var(--round);font-weight:700;font-size:15px;color:var(--ink);margin-right:4px}
+.bf{width:30px;height:26px;flex:none}
+.bf path{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.bf.on path:first-child{fill:var(--sun)}
+.rname{font-size:clamp(24px,6.6vw,30px)}
+.big{font-family:var(--round);font-weight:500;font-size:15px;color:var(--ink-soft)}
+.cta{background:var(--sun-soft);border:2.5px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.cta strong{font-family:var(--display);font-weight:400;font-size:19px}
+.misses{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.misses ul{margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.misses li{list-style:none;display:flex;gap:10px;justify-content:space-between;align-items:flex-start;background:var(--coral-soft);border:2px solid var(--line);border-radius:12px;padding:8px 12px}
+.misses .pg{font-family:var(--round);font-weight:700;color:var(--ink);flex:none}
+.toast{font-size:13px;color:var(--teal);min-height:1.2em}
+.foot{font-size:12px;color:var(--ink-soft);text-align:center}
+@media (prefers-reduced-motion: reduce){.bar span,.btn,.opt{transition:none}}
+</style>
+
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+(function(){
+  var BOOK_URL='#';   // TODO: 上市後換成通路購書頁
+  var SHARE_URL='';   // TODO: 測驗正式網址
+
+  var Q=[
+    {q:'柯基和貴賓狗，一個短腿、一個捲毛，長得差這麼多。牠們是不同「物種」嗎？',
+     o:['是，長得不一樣就是不同物種','不是，牠們是同一物種、不同品種','柯基是物種，貴賓狗是品種','要看毛色才知道'],a:1,
+     ex:'書裡的說法很好記：物種是「自然的分類」，品種是「人類加工的成果」。柯基、貴賓狗、無毛貓都是人類選育出來的品種，生物學上仍屬同一物種。',pg:'p.8–9',
+     tz:'同一頁還有「蜘蛛到底算不算動物？」的答案。'},
+    {q:'蜘蛛常被叫成「小蟲子」。那麼，蜘蛛是昆蟲嗎？',
+     o:['是，蜘蛛就是昆蟲','不是，蜘蛛連動物都不算','不是，蜘蛛有八隻腳，跟昆蟲不同綱','小時候是昆蟲，長大才變蜘蛛'],a:2,
+     ex:'昆蟲是六隻腳，身體分成頭、胸、腹；蜘蛛是八隻腳，身體分成頭胸部和腹部，屬於蛛形綱。至於「蜘蛛連動物都不算」？這是陷阱，牠們都是節肢動物，是貨真價實的動物。',pg:'p.8–9'},
+    {img:'img/q03.jpg',alt:'兩隻獨角仙在樹幹上',q:'夏天的光蠟樹上，兩隻雄獨角仙槓上了。牠們最常用哪一招分出勝負？',
+     o:['用角把對手刺穿','把頭角伸到對手身體下方，把對手撬起來','用大顎互咬，誰先鬆口誰輸','比誰的翅膀張得比較大'],a:1,
+     ex:'雄獨角仙會把長長的頭角插到對手腹部底下，以頭部關節為支點往上撬，讓對手失去抓地力、離開樹幹。這就是槓桿原理。',pg:'p.14–15',
+     tz:'書裡還有一張「獨角仙對戰力學」圖，解釋為什麼角不是越長越好。'},
+    {q:'晚上去看螢火蟲，有人不小心拿手電筒直接照牠。螢火蟲會怎麼樣？',
+     o:['會馬上死掉','不會死，但強光會干擾牠們找對象','會發出更亮的光回應','完全沒有影響'],a:1,
+     ex:'螢火蟲照到光不會死，但牠們靠螢光找配偶、傳遞訊息，強光會蓋掉這些訊號，也讓牠們迷失方向。書裡建議：手電筒包上紅色玻璃紙，也不要直接照射。',pg:'p.44–45'},
+    {q:'路燈下撿到一隻特別小隻的大兜蟲。同行的小朋友問：「牠以後還會長大嗎？」',
+     o:['會，多餵一點就會長大','會，再脫一次殼就變大了','不會，甲蟲羽化成蟲後就不會再長大','不會，因為牠是另一種小型甲蟲'],a:2,
+     ex:'甲蟲是「完全變態」的昆蟲，一生分成卵、幼蟲、蛹、成蟲。羽化後體型就固定了，個頭大小，其實在幼蟲時期吃得夠不夠就決定了。',pg:'p.174–175',
+     tz:'同一章還有全世界最大的花，以及牠只開七天的完整紀錄。'},
+    {img:'img/q06.jpg',alt:'一片像枯葉的東西，邊緣有一隻眼睛',q:'在馬達加斯加的雨林裡，嚮導指著一片掛在樹枝上的「枯葉」。照片裡的牠，其實是什麼？',
+     o:['真的只是一片枯葉','枯葉蝶','撒旦葉尾守宮','變色龍'],a:2,
+     ex:'撒旦葉尾守宮的身體和尾巴，就像一片邊緣破爛的枯葉。阿傑形容牠的眼睛，像電影《魔戒》裡的「索倫之眼」。',pg:'p.198–201'},
+    {img:'img/q07.jpg',alt:'一隻紅色身體、黑色長脖子的甲蟲站在葉子上',q:'這隻馬達加斯加的甲蟲，有一段長得不可思議的「脖子」。這段「脖子」其實是？',
+     o:['真的是脖子','特化的頭部','觸角','前腳'],a:1,
+     ex:'這是長頸鹿捲葉象鼻蟲。看起來像脖子的那一段，其實是特化的頭部。牠們會把葉片捲成葉卷，在裡面產卵，當作寶寶的搖籃。',pg:'p.204–205'},
+    {img:'img/q08.jpg',alt:'長滿苔蘚和地衣的樹幹',q:'嚮導停在這棵樹前，笑著說：「Gecko! You find!」照片裡的樹幹上，有什麼？',
+     o:['什麼都沒有，只有苔蘚和地衣','一隻苔蘚葉尾守宮','一隻竹節蟲','一隻變色龍'],a:1,
+     ex:'阿傑當時左看右看，也回答「No gecko.」，直到嚮導的手指快碰到樹幹，他才看到眼睛的反光。苔蘚葉尾守宮的花紋，跟樹皮上的地衣幾乎一模一樣。',pg:'p.204–205',
+     tz:'書裡整趟馬達加斯加之旅，還有大狐猴的歌聲讓阿傑哭到停不下來的故事。'},
+    {q:'在泰國的雨林夜觀，紫外光燈是尋找某種生物的好幫手：牠的外骨骼被紫外光一照，就會發出藍綠色的螢光，在黑暗中特別顯眼。這種生物是？',
+     o:['螢火蟲','雨林蠍','蘭花螳螂','樹蛙'],a:1,
+     ex:'蠍子硬化的外骨骼裡含有螢光物質，吸收紫外光之後，會釋放出藍綠色的光。有趣的是，剛蛻皮、身體還軟的幼蠍不會發光。至於蠍子為什麼會發光，學界到現在還沒有定論。',pg:'p.134–135'},
+    {q:'懶猴眼睛圓圓、動作慢吞吞，看起來超溫馴。但牠其實是？',
+     o:['世界上唯一有毒的靈長類','只吃樹葉的草食動物','白天活動的猴子','會模仿人說話的猴子'],a:0,
+     ex:'懶猴上臂的腺體會分泌毒素，牠舔舐腺體後，毒液會混著口水塗在牙齒上。被咬到會劇痛，甚至引起過敏性休克。所以看到懶猴，千萬別伸手摸。',pg:'p.138–139'},
+    {q:'大王花盛開時，花朵的溫度會比周圍環境高一些。大王花為什麼要「發熱」？',
+     o:['為了在晚上取暖','把氣味傳得更遠，吸引喜歡腐肉的授粉昆蟲','嚇跑想吃牠的動物','讓種子比較快發芽'],a:1,
+     ex:'大王花會散發腐肉般的氣味，吸引麗蠅、埋葬蟲這類喜歡腐肉的昆蟲來授粉。在授粉昆蟲最活躍的時段提高溫度，能讓氣味帶得更遠，好在短短的花期裡完成繁衍。',pg:'p.172–173',
+     tz:'書裡把大王花從綻放到凋零的七天，一天一天記錄了下來。'},
+    {q:'全世界的寬尾鳳蝶屬只有兩種。臺灣特有的「臺灣寬尾鳳蝶」，幼蟲只吃哪一種植物？',
+     o:['柑橘葉','樟樹','臺灣檫樹','馬兜鈴'],a:2,
+     ex:'臺灣寬尾鳳蝶非常挑食，幼蟲只吃冰河孑遺植物「臺灣檫樹」。陷阱是樟樹：會吃樟樹的，是另一種「中華寬尾鳳蝶」。',pg:'p.64–65',
+     tz:'書裡也寫了阿傑在太平山溪邊，等了好多年才拍到牠的那一刻。'}
+  ];
+
+  var LV=[
+    {min:0,name:'剛探出頭的鼠婦',lv:1,img:'img/lv1.jpg',pal:'鼠婦',pg:'p.88–89',
+     msg:'這些題目藏了不少小陷阱，被騙到一點也不奇怪。就連阿傑在馬達加斯加，也曾盯著一棵樹幹說「No gecko.」。你就像剛從石縫探出頭的鼠婦，外面還有好多新鮮事等著你。下次經過公園，不妨放慢腳步，蹲下來看看落葉底下藏了誰。'},
+    {min:4,name:'練習偽裝的竹節蟲',lv:2,img:'img/lv2.jpg',pal:'津田氏大頭竹節蟲',pg:'p.88–89',
+     msg:'你已經認得不少生物了。答錯的那幾題，多半是大自然最拿手的「障眼法」，現在知道了，下次就換你看穿牠們。像竹節蟲一樣，耐心待在枝頭慢慢看，你會發現越來越多有趣的細節。'},
+    {min:6,name:'夜裡出巡的鍬形蟲',lv:3,img:'img/lv3.jpg',pal:'鍬形蟲',pg:'p.62–63',
+     msg:'你對自然的好奇心，就像入夜後開始活動的鍬形蟲，已經準備好出門探險了。找個晴朗的晚上，帶著包上紅色玻璃紙的手電筒，和家人朋友去夜觀吧。夜晚的森林，藏著白天看不到的另一種熱鬧。'},
+    {min:9,name:'看穿偽裝的葉尾守宮',lv:4,img:'img/lv4.jpg',pal:'撒旦葉尾守宮',pg:'p.196–197',
+     msg:'最懂偽裝的，往往也最會看穿偽裝。葉尾守宮是雨林裡的偽裝大師，而你的眼睛，連這樣的高手都很難騙過。這份眼力，就像馬達加斯加那位一眼就找到苔蘚葉尾守宮的嚮導。帶著這雙眼睛走進大自然，一定還有更多驚喜在等你。'},
+    {min:12,name:'森林裡高歌的大狐猴',lv:5,img:'img/lv5.jpg',pal:'大狐猴',pg:'p.198–199',
+     msg:'12 題全部答對！你對大自然的熟悉和用心，跟熱血阿傑一樣厲害。在馬達加斯加的森林裡，大狐猴的歌聲曾讓阿傑感動落淚，希望這份對自然的感動，也一直陪著你。歡迎把這個小測驗分享給同樣喜歡自然生態的朋友，約好一起出門，慢慢走、仔細看。'}
+  ];
+
+  var app=document.getElementById('app');
+  var cur=0, right=0, misses=[], ORD=[];
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function intro(){
+    cur=0;right=0;misses=[];ORD=Q.map(function(q){return shuffle(q.o.map(function(_,i){return i;}));});
+    app.innerHTML=
+      '<section class="page">'+
+        '<div class="hero-wrap"><img class="hero" src="img/hero.jpg" width="1200" height="800" alt="熱帶雨林裡的木頭招牌寫著「自然觀察力大考驗」，四周有台灣藍鵲、樹蛙、松鼠、鍬形蟲、蝴蝶，還有比著手勢的阿傑插畫"></div>'+
+        '<p class="eyebrow">熱血阿傑的自然生態日記簿・自然觀察力大考驗</p>'+
+        '<h1 class="sr">阿傑的自然觀察力大考驗</h1>'+
+        '<p class="lead">樹枝會走路，枯葉會眨眼，大自然裡藏著好多騙過你眼睛的秘密。準備好你的放大鏡，來測測看：你的自然觀察力，到底有幾級？</p>'+
+        '<p class="meta">共 12 題・答完揭曉你的觀察力等級</p>'+
+        '<div class="row"><button class="btn btn-primary" id="start" type="button">開始挑戰</button></div>'+
+      '</section>'+
+      '<p class="foot">《熱血阿傑的自然生態日記簿》2026/11/23 上市｜散冊出版</p>';
+    document.getElementById('start').onclick=function(){question();window.scrollTo(0,0);};
+  }
+
+  function question(){
+    var q=Q[cur], keys='ABCD';
+    app.innerHTML=
+      '<section class="page">'+
+        '<div class="progress"><span class="qnum">Q'+String(cur+1).padStart(2,'0')+' / '+Q.length+'</span><div class="bar"><span style="width:'+(cur/Q.length*100)+'%"></span></div></div>'+
+        (q.img?'<figure class="qimg"><img src="'+q.img+'" alt="'+esc(q.alt||'')+'"></figure>':'')+
+        '<h2 id="qt">'+esc(q.q)+'</h2>'+
+        '<div class="opts" role="group" aria-labelledby="qt">'+ORD[cur].map(function(oi,i){return '<button class="opt" type="button" data-i="'+oi+'"><span class="k">'+keys[i]+'</span><span>'+esc(q.o[oi])+'</span></button>';}).join('')+'</div>'+
+        '<div id="fb"></div>'+
+      '</section>';
+    Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){b.onclick=function(){answer(+b.getAttribute('data-i'));};});
+  }
+
+  var GOOD=['答對了！觀察得很仔細。','漂亮！這題難不倒你。','正確！阿傑會想跟你一起去夜觀。','答對！看來你常往森林跑。'];
+  var BAD=['差一點！這題很多人都會掉進陷阱。','被騙到了吧？沒關係，答案在書裡。','可惜！不過現在你知道了。','啊，這題有陷阱！'];
+  function answer(i){
+    var q=Q[cur], ok=i===q.a; if(ok) right++; else misses.push(cur);
+    Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){var k=+b.getAttribute('data-i');b.disabled=true; if(k===q.a) b.classList.add('right'); else if(k===i) b.classList.add('wrong');});
+    var last=cur===Q.length-1;
+    document.getElementById('fb').innerHTML=
+      '<div class="note '+(ok?'good':'bad')+'">'+
+        '<span class="verdict">'+(ok?GOOD[cur%GOOD.length]:BAD[cur%BAD.length])+'</span>'+
+        '<span>'+esc(q.ex)+'</span>'+
+        '<span class="page-ref">書中 '+esc(q.pg)+'</span>'+
+        (q.tz?'<span class="teaser">'+esc(q.tz)+'</span>':'')+
+      '</div>'+
+      '<div class="row" style="margin-top:12px"><button class="btn btn-primary" id="next" type="button">'+(last?'看看我的結果':'下一題')+'</button></div>';
+    var nx=document.getElementById('next'); nx.focus({preventScroll:true});
+    nx.onclick=function(){ if(last) result(); else {cur++;question();} window.scrollTo(0,0); };
+  }
+
+  function bfly(on){
+    return '<svg class="bf'+(on?' on':'')+'" viewBox="0 0 32 28" aria-hidden="true"><path d="M16,9 C12,1 2,0 2,7 C2,12 7,14 11,14 C6,16 5,23 10,24 C13,25 15,21 16,17 C17,21 19,25 22,24 C27,23 26,16 21,14 C25,14 30,12 30,7 C30,0 20,1 16,9Z"/><path class="bd" d="M16,8 L16,22 M16,8 L13,3 M16,8 L19,3"/></svg>';
+  }
+  function result(){
+    var L=LV[0]; LV.forEach(function(l){ if(right>=l.min) L=l; });
+    app.innerHTML=
+      '<section class="page">'+
+        '<p class="eyebrow">你的自然觀察力</p>'+
+        '<div class="badge"><figure class="avatar"><img src="'+L.img+'" alt="'+esc(L.pal)+'"></figure><div><h2 class="rname">'+esc(L.name)+'</h2><p class="lvrow" aria-label="Level '+L.lv+'，共 5 級"><span class="lvtxt">Lv.'+L.lv+'</span>'+[1,2,3,4,5].map(function(n){return bfly(n<=L.lv);}).join('')+'</p><p class="big">12 題答對 '+right+' 題</p></div></div>'+
+        '<p>'+esc(L.msg)+'</p>'+
+        (misses.length?'<div class="misses"><p class="eyebrow">你答錯的題目，答案都在書裡</p><ul>'+misses.map(function(k){return '<li><span>Q'+String(k+1).padStart(2,'0')+'　'+esc(Q[k].q.length>26?Q[k].q.slice(0,26)+'…':Q[k].q)+'</span><span class="pg">'+esc(Q[k].pg)+'</span></li>';}).join('')+'</ul></div>':'')+
+        '<div class="cta">'+
+          '<strong>讓熱血阿傑帶你認識更多大自然裡的美妙生物！</strong>'+
+          '<span>《熱血阿傑的自然生態日記簿》收錄 41 個台灣走讀點和六個國家的雨林冒險，翻開書頁，彷彿與阿傑同行：為一隻昆蟲停下腳步，因一株植物重新認識森林，在一次次發現中，理解生態旅行為什麼值得慢慢走、仔細看。無論下一站是住家附近的公園，還是遠方的雨林，這趟紙上旅程，都將為你打開新的視野～</span>'+
+          '<div class="row"><a class="btn btn-primary" href="'+BOOK_URL+'" target="_blank" rel="noopener">看看這本書</a><button class="btn btn-ghost" id="share" type="button">找朋友來挑戰</button></div>'+
+          '<p class="toast" id="toast" role="status"></p>'+
+        '</div>'+
+        '<div class="row"><button class="btn btn-ghost" id="again" type="button">回到首頁</button></div>'+
+      '</section>'+
+      '<p class="foot">照片：黃仕傑｜《熱血阿傑的自然生態日記簿》散冊出版</p>';
+    document.getElementById('again').onclick=function(){intro();window.scrollTo(0,0);};
+    document.getElementById('share').onclick=function(){
+      var text='我在「阿傑的自然觀察力大考驗」答對 '+right+' 題，結果是「'+L.name+'」！喜歡自然的你，也來試試看？'+(SHARE_URL?' '+SHARE_URL:''), t=document.getElementById('toast');
+      try{navigator.clipboard.writeText(text).then(function(){t.textContent='已複製挑戰文字，貼給朋友吧。';},function(){t.textContent=text;});}catch(e){t.textContent=text;}
+    };
+  }
+
+  intro();
+})();
+</script>
+
+</body>
+</html>
